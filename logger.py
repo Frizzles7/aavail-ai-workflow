@@ -3,11 +3,8 @@
 logging functions
 """
 
-import time,os,re,csv,sys,uuid,joblib
+import time,os,re,csv,uuid
 from datetime import date
-
-
-
 
 def update_train_log(tag,period,rmse,runtime,MODEL_VERSION,MODEL_VERSION_NOTE,test=False):
     """
