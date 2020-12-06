@@ -4,8 +4,6 @@ model training
 """
 
 import time,os,re,joblib
-#from datetime import date
-#from collections import defaultdict
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
@@ -13,8 +11,8 @@ from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.pipeline import Pipeline
-from logger import update_predict_log, update_train_log
-from helper import fetch_ts, engineer_features
+from src.logger import update_predict_log, update_train_log
+from src.helper import fetch_ts, engineer_features
 
 ## model specific variables (iterate the version and note with each change)
 MODEL_DIR = "models"
@@ -72,11 +70,11 @@ def _model_train(df, tag, test=False):
     grid.fit(X, y)
     model_name = re.sub("\.","_",str(MODEL_VERSION))
     if test:
-        saved_model = os.path.join("..",MODEL_DIR,
+        saved_model = os.path.join(".",MODEL_DIR,
                                    "test-{}-{}.joblib".format(tag,model_name))
         print("... saving test version of model: {}".format(saved_model))
     else:
-        saved_model = os.path.join("..",MODEL_DIR,
+        saved_model = os.path.join(".",MODEL_DIR,
                                    "sl-{}-{}.joblib".format(tag,model_name))
         print("... saving model: {}".format(saved_model))
         
@@ -98,8 +96,8 @@ def model_train(data_dir, test=False):
     'test' - can be used to subset data simulating a train
     """
     
-    if not os.path.isdir(os.path.join("..",MODEL_DIR)):
-        os.mkdir(os.path.join("..",MODEL_DIR))
+    if not os.path.isdir(os.path.join(".",MODEL_DIR)):
+        os.mkdir(os.path.join(".",MODEL_DIR))
 
     if test:
         print("... test flag on")
@@ -126,16 +124,16 @@ def model_load(prefix='sl', data_dir=None, training=True):
     """
 
     if not data_dir:
-        data_dir = os.path.join("..","data","cs-train")
+        data_dir = os.path.join(".","data","cs-train")
     
-    models = [f for f in os.listdir(os.path.join("..","models")) if re.search(prefix,f)]
+    models = [f for f in os.listdir(os.path.join(".","models")) if re.search(prefix,f)]
 
     if len(models) == 0:
         raise Exception("Models with prefix '{}' cannot be found did you train?".format(prefix))
 
     all_models = {}
     for model in models:
-        all_models[re.split("-",model)[1]] = joblib.load(os.path.join("..","models",model))
+        all_models[re.split("-",model)[1]] = joblib.load(os.path.join(".","models",model))
 
     ## load data
     ts_data = fetch_ts(data_dir)
@@ -212,7 +210,7 @@ if __name__ == "__main__":
 
     ## train the model
     print("TRAINING MODELS")
-    data_dir = os.path.join("..","data","cs-train")
+    data_dir = os.path.join(".","data","cs-train")
     model_train(data_dir,test=True)
 
     ## load the model

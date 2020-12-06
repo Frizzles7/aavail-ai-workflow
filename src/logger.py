@@ -11,16 +11,16 @@ def update_train_log(tag,period,rmse,runtime,MODEL_VERSION,MODEL_VERSION_NOTE,te
     function to update training log file
     """
 
-    if not os.path.isdir(os.path.join("..","logs")):
-        os.mkdir(os.path.join("..","logs"))
+    if not os.path.isdir(os.path.join(".","logs")):
+        os.mkdir(os.path.join(".","logs"))
 
     # naming for log files
     today = date.today()
     if test:
-        logfile = os.path.join("..","logs", 
+        logfile = os.path.join(".","logs", 
                   "train-test-{}-{}-{}.log").format(today.year, today.month, today.day)
     else:
-        logfile = os.path.join("..","logs", 
+        logfile = os.path.join(".","logs", 
                   "train-{}-{}-{}.log").format(today.year, today.month, today.day)
 
     # update log file with data
@@ -42,16 +42,16 @@ def update_predict_log(country, y_pred, y_proba, target_date, runtime, MODEL_VER
     function to update prediction log file
     """
 
-    if not os.path.isdir(os.path.join("..","logs")):
-        os.mkdir(os.path.join("..","logs"))
+    if not os.path.isdir(os.path.join(".","logs")):
+        os.mkdir(os.path.join(".","logs"))
 
     # naming for log files
     today = date.today()
     if test:
-        logfile = os.path.join("..","logs", 
+        logfile = os.path.join(".","logs", 
                   "predict-test-{}-{}-{}.log").format(today.year, today.month, today.day)
     else:
-        logfile = os.path.join("..","logs", 
+        logfile = os.path.join(".","logs", 
                   "predict-{}-{}-{}.log").format(today.year, today.month, today.day)
 
     # update log file with data
