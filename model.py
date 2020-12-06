@@ -1,30 +1,33 @@
-import time,os,re,csv,sys,uuid,joblib
-from datetime import date
-from collections import defaultdict
+#!/usr/bin/env python
+"""
+model training
+"""
+
+import time,os,re,joblib
+#from datetime import date
+#from collections import defaultdict
 import numpy as np
 import pandas as pd
-from sklearn import svm
-from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
-from sklearn.preprocessing import OneHotEncoder
+from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import TimeSeriesSplit
 from sklearn.pipeline import Pipeline
-
 from logger import update_predict_log, update_train_log
 from helper import fetch_ts, engineer_features
 
 ## model specific variables (iterate the version and note with each change)
 MODEL_DIR = "models"
 MODEL_VERSION = 0.1
-MODEL_VERSION_NOTE = "supervised learing model for time-series"
+MODEL_VERSION_NOTE = "supervised learing model for time series"
 
-def _model_train(df,tag,test=False):
+def _model_train(df, tag, test=False):
     """
-    example funtion to train model
+    example function to train model
     
     the 'test' flag when set to 'True':
         (1) subsets the data and serializes a test version
-        (2) specifies that the use of the 'test' log file 
+        (2) specifies the use of the 'test' log file 
     """
 
 
@@ -50,14 +53,17 @@ def _model_train(df,tag,test=False):
     # train a random forest model
     param_grid_rf = {
     'rf__criterion': ['mse','mae'],
-    'rf__n_estimators': [10,20,30,40,50],
-    'rf__max_depth': [None,5,3,2],
-    'rf__max_samples': [0.7,0.8,0.9,None]
+    'rf__n_estimators': [10,20,30,40,50,60,70],
+    'rf__max_depth': [5,3,2],
+    'rf__max_samples': [0.7,0.8,0.9]
     }
 
     pipe_rf = Pipeline(steps=[('rf', RandomForestRegressor())])
     
-    grid = GridSearchCV(pipe_rf, param_grid=param_grid_rf, cv=5, iid=False, n_jobs=-1)
+    # create time series split for cross validation
+    tscv = TimeSeriesSplit(n_splits=5)
+    
+    grid = GridSearchCV(pipe_rf, param_grid=param_grid_rf, cv=tscv, n_jobs=-1)
     grid.fit(X_train, y_train)
     y_pred = grid.predict(X_test)
     eval_rmse = round(np.sqrt(mean_squared_error(y_test,y_pred)))
@@ -85,11 +91,11 @@ def _model_train(df,tag,test=False):
                      MODEL_VERSION, MODEL_VERSION_NOTE,test=True)
   
 
-def model_train(data_dir,test=False):
+def model_train(data_dir, test=False):
     """
-    funtion to train model given a df
+    function to train model given a df
     
-    'mode' -  can be used to subset data essentially simulating a train
+    'test' - can be used to subset data simulating a train
     """
     
     if not os.path.isdir(MODEL_DIR):
@@ -97,29 +103,30 @@ def model_train(data_dir,test=False):
 
     if test:
         print("... test flag on")
-        print("...... subseting data")
-        print("...... subseting countries")
+        print("...... subsetting data")
+        print("...... subsetting countries")
         
-    ## fetch time-series formatted data
+    ## fetch time series formatted data
     ts_data = fetch_ts(data_dir)
 
-    ## train a different model for each data sets
-    for country,df in ts_data.items():
+    ## train a different model for each data set
+    for country, df in ts_data.items():
         
         if test and country not in ['all','united_kingdom']:
             continue
         
-        _model_train(df,country,test=test)
-    
-def model_load(prefix='sl',data_dir=None,training=True):
+        _model_train(df, country, test=test)
+
+
+def model_load(prefix='sl', data_dir=None, training=True):
     """
-    example funtion to load model
+    example function to load model
     
     The prefix allows the loading of different models
     """
 
     if not data_dir:
-        data_dir = os.path.join("..","data","cs-train")
+        data_dir = os.path.join(".","data","cs-train")
     
     models = [f for f in os.listdir(os.path.join(".","models")) if re.search("sl",f)]
 
@@ -140,9 +147,10 @@ def model_load(prefix='sl',data_dir=None,training=True):
         
     return(all_data, all_models)
 
-def model_predict(country,year,month,day,all_models=None,test=False):
+
+def model_predict(country, year, month, day, all_models=None, test=False):
     """
-    example funtion to predict from model
+    example function to predict from model
     """
 
     ## start timer for runtime
@@ -150,7 +158,7 @@ def model_predict(country,year,month,day,all_models=None,test=False):
 
     ## load model if needed
     if not all_models:
-        all_data,all_models = model_load(training=False)
+        all_data, all_models = model_load(training=False)
     
     ## input checks
     if country not in all_models.keys():
@@ -175,7 +183,7 @@ def model_predict(country,year,month,day,all_models=None,test=False):
     date_indx = np.where(data['dates'] == target_date)[0][0]
     query = data['X'].iloc[[date_indx]]
     
-    ## sainty check
+    ## sanity check
     if data['dates'].shape[0] != data['X'].shape[0]:
         raise Exception("ERROR (model_predict) - dimensions mismatch")
 
@@ -197,6 +205,7 @@ def model_predict(country,year,month,day,all_models=None,test=False):
     
     return({'y_pred':y_pred,'y_proba':y_proba})
 
+
 if __name__ == "__main__":
 
     """
@@ -205,7 +214,7 @@ if __name__ == "__main__":
 
     ## train the model
     print("TRAINING MODELS")
-    data_dir = os.path.join("..","data","cs-train")
+    data_dir = os.path.join(".","data","cs-train")
     model_train(data_dir,test=True)
 
     ## load the model
