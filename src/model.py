@@ -72,11 +72,11 @@ def _model_train(df, tag, test=False):
     grid.fit(X, y)
     model_name = re.sub("\.","_",str(MODEL_VERSION))
     if test:
-        saved_model = os.path.join(MODEL_DIR,
+        saved_model = os.path.join("..",MODEL_DIR,
                                    "test-{}-{}.joblib".format(tag,model_name))
         print("... saving test version of model: {}".format(saved_model))
     else:
-        saved_model = os.path.join(MODEL_DIR,
+        saved_model = os.path.join("..",MODEL_DIR,
                                    "sl-{}-{}.joblib".format(tag,model_name))
         print("... saving model: {}".format(saved_model))
         
@@ -98,8 +98,8 @@ def model_train(data_dir, test=False):
     'test' - can be used to subset data simulating a train
     """
     
-    if not os.path.isdir(MODEL_DIR):
-        os.mkdir(MODEL_DIR)
+    if not os.path.isdir(os.path.join("..",MODEL_DIR)):
+        os.mkdir(os.path.join("..",MODEL_DIR))
 
     if test:
         print("... test flag on")
@@ -126,16 +126,16 @@ def model_load(prefix='sl', data_dir=None, training=True):
     """
 
     if not data_dir:
-        data_dir = os.path.join(".","data","cs-train")
+        data_dir = os.path.join("..","data","cs-train")
     
-    models = [f for f in os.listdir(os.path.join(".","models")) if re.search("sl",f)]
+    models = [f for f in os.listdir(os.path.join("..","models")) if re.search(prefix,f)]
 
     if len(models) == 0:
         raise Exception("Models with prefix '{}' cannot be found did you train?".format(prefix))
 
     all_models = {}
     for model in models:
-        all_models[re.split("-",model)[1]] = joblib.load(os.path.join(".","models",model))
+        all_models[re.split("-",model)[1]] = joblib.load(os.path.join("..","models",model))
 
     ## load data
     ts_data = fetch_ts(data_dir)
@@ -177,9 +177,7 @@ def model_predict(country, year, month, day, all_models=None, test=False):
     print(target_date)
 
     if target_date not in data['dates']:
-        raise Exception("ERROR (model_predict) - date {} not in range {}-{}".format(target_date,
-                                                                                    data['dates'][0],
-                                                                                    data['dates'][-1]))
+        raise Exception("ERROR (model_predict) - date {} not in range {}-{}".format(target_date,data['dates'][0],data['dates'][-1]))
     date_indx = np.where(data['dates'] == target_date)[0][0]
     query = data['X'].iloc[[date_indx]]
     
@@ -214,7 +212,7 @@ if __name__ == "__main__":
 
     ## train the model
     print("TRAINING MODELS")
-    data_dir = os.path.join(".","data","cs-train")
+    data_dir = os.path.join("..","data","cs-train")
     model_train(data_dir,test=True)
 
     ## load the model
@@ -223,6 +221,7 @@ if __name__ == "__main__":
     print("... models loaded: ",",".join(all_models.keys()))
 
     ## test predict
+    print("PREDICTING")
     country='all'
     year='2018'
     month='01'
