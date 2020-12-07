@@ -12,5 +12,9 @@ ModelTestSuite = unittest.TestLoader().loadTestsFromTestCase(ModelTest)
 from LoggerTests import *
 LoggerTestSuite = unittest.TestLoader().loadTestsFromTestCase(LoggerTest)
 
-MainSuite = unittest.TestSuite([ModelTestSuite, LoggerTestSuite])
+# api tests
+from ApiTests import *
+ApiTestSuite = unittest.TestLoader().loadTestsFromTestCase(ApiTest)
+
+MainSuite = unittest.TestSuite([ModelTestSuite, LoggerTestSuite, ApiTestSuite])
 
