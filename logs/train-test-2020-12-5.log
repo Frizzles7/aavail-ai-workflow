@@ -1,0 +1,17 @@
+unique_id,timestamp,rmse,runtime,model_version,model_version_note
+aa98dfd4-b862-4008-8dfb-eb1b675bb6e2,1607223860.186524,{'rmse': 1.2345},00:01:02,0.1,supervised learing model for time series
+8a1c0c88-44dc-4ad5-a342-7a05e0a71205,1607224474.797247,{'rmse': 33756},000:00:45,0.1,supervised learing model for time series
+2d1f7bbc-24ed-47c7-a95d-7c4908c711a3,1607224516.0759358,{'rmse': 38481},000:00:41,0.1,supervised learing model for time series
+29d29169-73ac-4f6c-b0bc-1c315234e9e4,1607224698.0389454,{'rmse': 33583},000:00:43,0.1,supervised learing model for time series
+bd5cc790-b682-4952-9dde-3661375729a9,1607224741.3471937,{'rmse': 38747},000:00:43,0.1,supervised learing model for time series
+ac480226-caca-4ee1-acca-f8eacbb540a7,1607224789.3100681,{'rmse': 880},000:00:41,0.1,supervised learing model for time series
+e5343f79-137b-4ab5-ae41-c9f956e97a9c,1607224853.2444818,{'rmse': 1195},000:01:03,0.1,supervised learing model for time series
+ae3e811d-a1f8-490e-8db1-36e328faaa9c,1607224923.0329275,{'rmse': 68567},000:01:09,0.1,supervised learing model for time series
+cba37abe-f8f3-421b-bdc9-3f0315320d60,1607224962.5742095,{'rmse': 2494},000:00:39,0.1,supervised learing model for time series
+8b12c993-1f48-4794-b8ab-b7610e871f0b,1607224993.590687,{'rmse': 6481},000:00:31,0.1,supervised learing model for time series
+9d72ef92-19bc-453c-810f-7a47bae06a56,1607225058.5073175,{'rmse': 637},000:01:04,0.1,supervised learing model for time series
+d202c190-98b6-40b7-9cf8-7634d0e72599,1607225124.1525176,{'rmse': 19349},000:01:05,0.1,supervised learing model for time series
+a566b162-b342-4c66-bc2a-2c69f1d055c4,1607225188.825692,{'rmse': 3549},000:01:04,0.1,supervised learing model for time series
+492b9fcf-fa26-4cbc-88fd-f6cf4eecdd6e,1607225249.7067115,{'rmse': 368},000:01:00,0.1,supervised learing model for time series
+f723d2c7-94fe-472b-a853-0787c9586951,1607225307.8026135,{'rmse': 3140},000:00:58,0.1,supervised learing model for time series
+1fb79c5a-9b8a-4ea1-be45-37c76872e602,1607225369.4888117,{'rmse': 980},000:01:01,0.1,supervised learing model for time series
