@@ -1,0 +1,12 @@
+unique_id,timestamp,rmse,runtime,model_version,model_version_note
+270c5b48-9b1c-41d5-ae91-3a8374855fae,1607396044.391643,{'rmse': 869},000:00:41,0.1,supervised learing model for time series
+cd2090f8-8ea4-478e-9883-e860e7ea509a,1607396110.3197062,{'rmse': 1158},000:01:05,0.1,supervised learing model for time series
+a5877b58-2752-41a4-92c8-d187c9d1be70,1607396179.2356462,{'rmse': 38006},000:01:08,0.1,supervised learing model for time series
+6f3bfece-d07c-47b4-ba04-d2ffc5a2e41d,1607396219.8083353,{'rmse': 1604},000:00:40,0.1,supervised learing model for time series
+045d654c-cc06-40e1-b529-fc01f619e43b,1607396253.1242802,{'rmse': 6481},000:00:33,0.1,supervised learing model for time series
+82edd497-985c-40cb-838b-a6c11dbdedd3,1607396320.5974817,{'rmse': 531},000:01:07,0.1,supervised learing model for time series
+a3ee34fd-3ea0-47e2-9904-244b7abbb189,1607396387.595948,{'rmse': 20650},000:01:06,0.1,supervised learing model for time series
+c59352d4-e36e-43e0-b311-0335d45be63e,1607396455.600328,{'rmse': 3637},000:01:08,0.1,supervised learing model for time series
+980f13cd-a850-4636-ad38-d0185cc48881,1607396519.4597938,{'rmse': 346},000:01:03,0.1,supervised learing model for time series
+726e0b17-f2d3-4207-bf03-6eac0b7ead1a,1607396579.9828448,{'rmse': 3130},000:01:00,0.1,supervised learing model for time series
+838fac71-82c1-4e7d-beb8-79a66bf97ed2,1607396641.818392,{'rmse': 839},000:01:01,0.1,supervised learing model for time series

@@ -1,0 +1,27 @@
+unique_id,timestamp,rmse,runtime,model_version,model_version_note
+259897b9-db73-45b6-bf9d-2cf3f2d56f2b,1607394277.1052964,{'rmse': 32624},000:00:44,0.1,supervised learing model for time series
+501d7362-b902-4440-a294-63f8a3159d46,1607394320.0865927,{'rmse': 38275},000:00:42,0.1,supervised learing model for time series
+f664f54b-77b5-48e4-8b81-1eb24158b40e,1607394362.2455654,{'rmse': 890},000:00:42,0.1,supervised learing model for time series
+4ba7c1fc-9ae8-4a64-83c3-0132ec1af893,1607394427.471869,{'rmse': 1199},000:01:05,0.1,supervised learing model for time series
+befd9609-00b8-4225-9a8a-016b18003aee,1607394497.4486437,{'rmse': 70488},000:01:09,0.1,supervised learing model for time series
+e787225d-e5fd-49aa-bce4-0eefeb83d2f3,1607394537.7112827,{'rmse': 1402},000:00:40,0.1,supervised learing model for time series
+af010de8-7118-4024-a077-74cbfce5be78,1607394570.479694,{'rmse': 6481},000:00:32,0.1,supervised learing model for time series
+84b9c179-a429-497c-8bd2-790814ba211d,1607394640.0712786,{'rmse': 593},000:01:09,0.1,supervised learing model for time series
+7ccb0897-f2cd-4dce-b12f-4c4a4f26285e,1607394709.1836119,{'rmse': 20181},000:01:09,0.1,supervised learing model for time series
+d1f96e96-6e7b-4bac-82fd-7312851c4cc1,1607394778.8941107,{'rmse': 3586},000:01:09,0.1,supervised learing model for time series
+df39e740-9de5-474c-9cf7-df40eeebf0a1,1607394841.5883431,{'rmse': 330},000:01:02,0.1,supervised learing model for time series
+2fe0ed30-c261-4673-893f-52ab6e6a9a2d,1607394901.1086872,{'rmse': 3094},000:00:59,0.1,supervised learing model for time series
+70e50a83-5316-4539-9ca7-26a9af47491e,1607394963.6285536,{'rmse': 555},000:01:02,0.1,supervised learing model for time series
+d599077e-3a40-46dd-9817-e95e2c2c768c,1607395180.9982445,{'rmse': 860},000:00:42,0.1,supervised learing model for time series
+cf6694c9-6907-45e2-aad8-2915ead900b4,1607395247.0360155,{'rmse': 1175},000:01:06,0.1,supervised learing model for time series
+7fa055b2-51ad-49ae-8325-03e427c3764b,1607395314.7765515,{'rmse': 48734},000:01:07,0.1,supervised learing model for time series
+426b6b5f-6246-4a7c-96be-7f103609fceb,1607395353.537928,{'rmse': 2400},000:00:38,0.1,supervised learing model for time series
+2dcb8168-1122-4e8a-affb-1e7a94c7b178,1607395386.8707285,{'rmse': 6481},000:00:33,0.1,supervised learing model for time series
+d54701ee-aa3a-4016-ab6e-8d82011675ea,1607395453.170137,{'rmse': 580},000:01:06,0.1,supervised learing model for time series
+264b450a-35d0-47e7-99e6-bbaa94c783d4,1607395519.9985483,{'rmse': 21556},000:01:06,0.1,supervised learing model for time series
+9ecedb8e-eaea-425c-b5e4-6d1eb0c46e5b,1607395586.4234164,{'rmse': 3620},000:01:06,0.1,supervised learing model for time series
+a2121bdb-a4d4-4a24-8613-99c4ae769037,1607395649.6507618,{'rmse': 367},000:01:03,0.1,supervised learing model for time series
+6f4c2c2b-8b05-4d3b-bad9-548fd0be279b,1607395713.0750768,{'rmse': 3118},000:01:03,0.1,supervised learing model for time series
+a60b4459-4fc2-4e60-a68a-cd1ad5c8579f,1607395776.6479588,{'rmse': 816},000:01:03,0.1,supervised learing model for time series
+0b12107b-618d-4ef1-ae06-d6c9f5d3b650,1607395855.7578385,{'rmse': 37252},000:00:44,0.1,supervised learing model for time series
+a7997dea-ee50-4f5c-a9ee-6934520c0a61,1607395899.0081894,{'rmse': 37792},000:00:43,0.1,supervised learing model for time series
