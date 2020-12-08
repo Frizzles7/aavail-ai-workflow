@@ -86,7 +86,7 @@ def _model_train(df, tag, test=False):
 
     ## update log
     update_train_log(tag,(str(dates[0]),str(dates[-1])),{'rmse':eval_rmse},runtime,
-                     MODEL_VERSION, MODEL_VERSION_NOTE,test=True)
+                     MODEL_VERSION, MODEL_VERSION_NOTE,test=test)
   
 
 def model_train(data_dir, test=False):
