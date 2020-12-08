@@ -10,7 +10,7 @@ import requests
 
 # confirm flask server is running for tests
 try:
-    requests.post('http://127.0.0.1:5050/')
+    requests.post('http://0.0.0.0:8080/')
     server_is_running = True
 except:
     server_is_running = False
@@ -25,7 +25,7 @@ class ApiTest(unittest.TestCase):
         """
         
         request_json = {'test':'test'}
-        r = requests.post('http://127.0.0.1:5050/train', json=request_json)
+        r = requests.post('http://0.0.0.0:8080/train', json=request_json)
         response = json.loads(r.text)
         self.assertTrue(response == True)
         
@@ -37,7 +37,7 @@ class ApiTest(unittest.TestCase):
         """
         
         request_json = {'country':'all','year':'2018','month':'01','day':'05', 'test':'test'}
-        r = requests.post('http://127.0.0.1:5050/predict', json=request_json)
+        r = requests.post('http://0.0.0.0:8080/predict', json=request_json)
         response = json.loads(r.text)
         self.assertTrue(float(response[0]) >= 0)
         
@@ -49,12 +49,12 @@ class ApiTest(unittest.TestCase):
         """
         
         # no data provided
-        r = requests.post('http://127.0.0.1:5050/predict')
+        r = requests.post('http://0.0.0.0:8080/predict')
         response = json.loads(r.text)
         self.assertTrue(response == [])
         
         # bad data given
-        r = requests.post('http://127.0.0.1:5050/predict', json={'bad':'data'})
+        r = requests.post('http://0.0.0.0:8080/predict', json={'bad':'data'})
         response = json.loads(r.text)
         self.assertTrue(response == [])
 
@@ -67,7 +67,7 @@ class ApiTest(unittest.TestCase):
         
         log = 'predict-test-2020-12-6.log'
         request_json = {'log':log}
-        r = requests.post('http://127.0.0.1:5050/logfile', json=request_json)
+        r = requests.post('http://0.0.0.0:8080/logfile', json=request_json)
         
         with open(log, 'wb') as f:
             f.write(r.content)
